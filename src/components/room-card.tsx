@@ -13,7 +13,7 @@ import { Button } from "./ui/button";
 
 export default function RoomCard({ room }: { room: Room }) {
   return (
-    <Card>
+    <Card className=" shadow-lg">
       <CardHeader>
         <CardTitle>{room.name}</CardTitle>
         <CardDescription>{room.description}</CardDescription>

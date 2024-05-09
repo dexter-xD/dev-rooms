@@ -11,6 +11,8 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
     return <div>No room of this ID found.</div>;
   }
 
+  const tags = room.tags.split(",").map((tag) => tag.trim());
+
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-4 min-h-screen">
@@ -25,7 +27,7 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
             {room?.githubrepo && (
               <Link
                 href={room.githubrepo}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 text-center text-sm font-sans fonr-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -35,12 +37,19 @@ export default async function RoomPage(props: { params: { roomId: string } }) {
             <p className="text-base font-sans text-gray-600">
               {room?.description}
             </p>
-            <Badge
-              variant="outline"
-              className="w-fit bg-gray-800 text-gray-100 dark:bg-gray-100 dark:text-black"
-            >
-              {room.language}
-            </Badge>
+
+            <h1>Tags: </h1>
+            <div className="flex gap-2 flex-wrap">
+              {tags.map((tag) => (
+                <Badge
+                  variant="outline"
+                  className="w-fit bg-gray-800 text-gray-100 dark:bg-gray-100 dark:text-black"
+                  key={tag}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ import { useRouter } from "next/navigation";
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   description: z.string().min(2).max(100),
-  language: z.string().min(1).max(50),
+  tags: z.string().min(1).max(50),
   githubrepo: z.string().min(1).max(100),
 });
 
@@ -32,7 +32,7 @@ export default function CreateRoomForm() {
     defaultValues: {
       name: "",
       description: "",
-      language: "",
+      tags: "",
       githubrepo: "",
     },
   });
@@ -76,15 +76,16 @@ export default function CreateRoomForm() {
         />
         <FormField
           control={form.control}
-          name="language"
+          name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel> Primary Programing Language </FormLabel>
+              <FormLabel> Tags </FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="typescript, nextjs, tailwind" />
               </FormControl>
               <FormDescription>
-                List the primary programing languages that you are working on.
+                List your programming languages, frameworks, libraries so people
+                can find you content
               </FormDescription>
               <FormMessage />
             </FormItem>
